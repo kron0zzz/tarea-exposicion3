@@ -20,45 +20,46 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("Animación Interactiva")),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+        body: Column(
+          children: [
 
-              AnimatedContainer(
+            Expanded(
+              child: AnimatedAlign(
                 duration: const Duration(seconds: 2),
+                alignment: cambiar 
+                    ? Alignment.topRight 
+                    : Alignment.bottomLeft,
 
-                width: cambiar ? 220 : 120,
-                height: cambiar ? 220 : 120,
+                child: AnimatedContainer(
+                  duration: const Duration(seconds: 2),
 
-                margin: EdgeInsets.only(
-                  top: cambiar ? 50 : 0,
-                ),
+                  width: cambiar ? 220 : 120,
+                  height: cambiar ? 220 : 120,
 
-                decoration: BoxDecoration(
-                  color: cambiar ? Colors.purple : Colors.orange,
-                  borderRadius: BorderRadius.circular(
-                    cambiar ? 40 : 0,
+                  decoration: BoxDecoration(
+                    color: cambiar ? Colors.purple : Colors.orange,
+                    borderRadius: BorderRadius.circular(
+                      cambiar ? 40 : 0,
+                    ),
                   ),
                 ),
-
               ),
+            ),
 
-              const SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-              ElevatedButton(
-                onPressed: () {
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  cambiar = !cambiar;
+                });
+              },
+              child: const Text("Animarr"),
+            ),
 
-                  setState(() {
-                    cambiar = !cambiar;
-                  });
+            const SizedBox(height: 30)
 
-                },
-                child: const Text("Animar"),
-              )
-
-            ],
-          ),
+          ],
         ),
       ),
     );
